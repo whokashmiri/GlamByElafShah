@@ -372,9 +372,6 @@ h3 {
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SERVICES
-   ═══════════════════════════════════════════════════════════════════════════ */
 .services {
   background: #fff;
 }
@@ -389,6 +386,8 @@ h3 {
   background: var(--ivory2);
   border: 1px solid var(--line);
   transition: .3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
@@ -397,15 +396,18 @@ h3 {
 }
 
 .service-image {
-  height: 350px;
+  height: 700px;        /* ⬅ increased from 350px */
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: .5s;
+  display: block;
 }
 
 .service-card:hover img {
@@ -414,6 +416,7 @@ h3 {
 
 .service-copy {
   padding: 28px;
+  flex: 1;              /* ⬅ fills remaining space evenly */
 }
 
 .service-copy > span {
@@ -433,7 +436,6 @@ h3 {
   margin: 0;
 }
 
-
 /* ═══════════════════════════════════════════════════════════════════════════
    ABOUT
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -448,14 +450,31 @@ h3 {
 .about-image {
   max-width: 520px;
   position: relative;
+  padding: 24px;                     /* ⬅ inner breathing room */
+  background: var(--ivory2);         /* ⬅ matches section palette */
+  overflow: hidden;
+  transition: transform .45s ease, box-shadow .45s ease;
 }
 
+.about-image:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+/* Decorative offset border */
 .about-image:before {
   content: '';
   position: absolute;
-  inset: 28px -28px -28px 28px;
+  inset: 12px -12px -12px 12px;     /* ⬅ tighter, sits behind image */
   border: 1px solid var(--rose);
   z-index: 0;
+  transition: inset .45s ease, border-color .45s ease;
+  pointer-events: none;
+}
+
+.about-image:hover:before {
+  inset: 6px -18px -18px 18px;       /* ⬅ border slides out on hover */
+  border-color: var(--plum);
 }
 
 .about-image img {
@@ -464,6 +483,12 @@ h3 {
   position: relative;
   z-index: 1;
   box-shadow: var(--shadow);
+  transition: transform .6s ease, filter .6s ease;
+}
+
+.about-image:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.03) contrast(1.02);
 }
 
 .about-copy {
@@ -566,6 +591,7 @@ h3 {
   color: var(--ink);
   padding: 32px;
   box-shadow: 0 28px 60px rgba(0, 0, 0, .15);
+  border-radius: 20px;
 }
 
 /* Calendar */
@@ -597,6 +623,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 8px;
+  
 }
 
 .weekdays {
@@ -777,6 +804,7 @@ h3 {
   padding: 40px;
   text-align: center;
   box-shadow: var(--shadow);
+  border-radius: 30px;
 }
 
 .qr-wrap {
@@ -905,6 +933,7 @@ footer button {
 
   .service-image {
     height: 100%;
+    object-fit: cover;
   }
 
   /* Section heading */

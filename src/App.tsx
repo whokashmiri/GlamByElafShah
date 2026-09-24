@@ -13,20 +13,20 @@ import { QRCodeSVG } from 'qrcode.react'
 
 // ─── Assets ──────────────────────────────────────────────────────────────────
 import hero from './assets/brand-13.webp'
-import about from './assets/brand-17.webp'
+import about from './assets/brand-17.png'
 import bridal from './assets/brand-13.webp'
 import eventImg from './assets/brand-11.webp'
 import production from './assets/brand-08.webp'
 import portfolio1 from './assets/brand-10.webp'
 import portfolio2 from './assets/brand-12.webp'
-import portfolio3 from './assets/brand-14.webp'
+import portfolio3 from './assets/brand-19.webp'
 import portfolio4 from './assets/brand-15.webp'
 import portfolio5 from './assets/brand-16.webp'
 import portfolio6 from './assets/brand-18.webp'
 
 // ─── Configuration ───────────────────────────────────────────────────────────
 // Set a full international number here for direct-to-artist WhatsApp, e.g. 9665XXXXXXXX.
-const WHATSAPP_NUMBER = ''
+const WHATSAPP_NUMBER = '+966537959098'
 
 const TIMES = ['10:00 AM', '12:30 PM', '3:00 PM', '5:30 PM', '8:00 PM']
 const MAX_MONTH_OFFSET = 5
@@ -79,11 +79,11 @@ const copy: Record<Lang, Copy> = {
   en: {
     nav: ['Services', 'Portfolio', 'About', 'Booking'],
     book: 'Book your glam',
-    eyebrow: 'Makeup artistry • Riyadh',
+    eyebrow: 'Makeup artistry • Jeddah',
     title: 'Soft glam, made unforgettable.',
     heroBody:
       'Bridal, event and production makeup created around your features, your light and your moment.',
-    servicesTitle: 'Makeup for every frame',
+    servicesTitle: 'Makeup for every occasion',
     servicesBody:
       'A polished, skin-first approach with long-wear finishes made for real life and camera.',
     serviceNames: ['Bridal Glam', 'Event Makeup', 'Production Glam'],
@@ -93,9 +93,9 @@ const copy: Record<Lang, Copy> = {
       'Camera-ready makeup for shoots, campaigns, content and production days.',
     ],
     aboutKicker: 'Meet the artist',
-    aboutTitle: 'Glam by Elaf Shah',
+    aboutTitle: 'Elaf Shah',
     aboutBody:
-      'Beauty is personal. Every look starts with a conversation, then becomes a considered balance of skin, structure and softness — never a mask.',
+      '10 years of makeup and yet somehow, I still get excited about a new eye technique, a lip combo, or finding a better way to make makeup last.',
     portfolio: 'Selected work',
     portfolioBody:
       'A glimpse into the textures, finishes and moods behind the chair.',
@@ -336,8 +336,9 @@ export default function App() {
             <div>
               <span className="kicker">01 — {t.nav[0]}</span>
               <h2>{t.servicesTitle}</h2>
+               <p>{t.servicesBody}</p>
             </div>
-            <p>{t.servicesBody}</p>
+           
           </div>
 
           <div className="service-grid">
@@ -348,8 +349,8 @@ export default function App() {
                 </div>
                 <div className="service-copy">
                   <span>0{i + 1}</span>
-                  <h3>{t.serviceNames[i]}</h3>
-                  <p>{t.serviceBodies[i]}</p>
+                  {/* <h3>{t.serviceNames[i]}</h3>
+                  <p>{t.serviceBodies[i]}</p> */}
                 </div>
               </article>
             ))}
@@ -365,7 +366,7 @@ export default function App() {
             <span className="kicker">02 — {t.aboutKicker}</span>
             <h2>{t.aboutTitle}</h2>
             <p>{t.aboutBody}</p>
-            <div className="signature">Elaf Shah</div>
+            {/* <div className="signature">Elaf Shah</div> */}
           </div>
         </section>
 
@@ -375,8 +376,9 @@ export default function App() {
             <div>
               <span className="kicker">03 — {t.nav[1]}</span>
               <h2>{t.portfolio}</h2>
+              <p>{t.portfolioBody}</p>
             </div>
-            <p>{t.portfolioBody}</p>
+            
           </div>
 
           <div className="masonry">
