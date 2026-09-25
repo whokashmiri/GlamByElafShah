@@ -8,6 +8,7 @@ import {
   Sparkles,
   X,
   PhoneOutgoing,
+  ChevronDown,
 } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 
@@ -72,6 +73,12 @@ type Copy = {
   footer: string
   available: string
   selected: string
+  faqKicker: string
+faqTitle: string
+faqBody: string
+faqs: { q: string; a: string }[]
+faqCta: string
+faqCtaBtn: string
 }
 
 // ─── Content ─────────────────────────────────────────────────────────────────
@@ -117,6 +124,19 @@ const copy: Record<Lang, Copy> = {
     footer: 'Glam by Elaf Shah. All rights reserved.',
     available: 'Available',
     selected: 'Selected',
+    // en
+faqKicker: 'Questions answered',
+faqTitle: 'Frequently asked questions',
+faqBody: 'Answering all your concerns regarding our services.',
+faqs: [
+  { q: 'Do you have a studio?', a: 'Glam by Elaf is fully on-location. I come to you, so you can get ready comfortably, conveniently and in your own space.' },
+  { q: 'What kind of glam do you offer?', a: 'Bridal, productions, photoshoots, modeling & event glam. From getting ready for your big day to being camera-ready, we create glam around the occasion and the look you want.' },
+  { q: 'Do you offer makeup trials?', a: 'Yes! Trials are available for bridal, production & photoshoot bookings only. They give us the chance to test, refine and perfect your look before the actual booking. If you confirm your booking after the trial, SAR 150 from your trial fee will be credited toward your booking.' },
+  { q: 'Can I book glam for my bridal party?', a: 'Absolutely. Bridal parties, family, bridesmaids & entourages are welcome. Group bookings are planned around your group size, services, location & timeline.' },
+  { q: 'Do you take bookings outside Jeddah and KSA?', a: "Depending on the number of people, type of event, number of days & location, I can take bookings in other cities across Saudi and internationally. Send me your details and I'll let you know what's possible." },
+],
+faqCta: "Still have questions? If your question isn't listed here, send a DM and I'll answer you directly.",
+faqCtaBtn: 'Ask on WhatsApp',
   },
   ar: {
     nav: ['الخدمات', 'الأعمال', 'عن الفنانة', 'الحجز'],
@@ -159,6 +179,19 @@ const copy: Record<Lang, Copy> = {
     footer: 'Glam by Elaf Shah. جميع الحقوق محفوظة.',
     available: 'متاح',
     selected: 'محدد',
+    // ar
+faqKicker: 'أسئلة وأجوبة',
+faqTitle: 'الأسئلة الشائعة',
+faqBody: 'إجابات على جميع استفساراتكم حول خدماتنا.',
+faqs: [
+  { q: 'هل لديك استوديو؟', a: 'خدمات Glam by Elaf متنقلة بالكامل. أحضر إليك لتحصلي على إطلالتك براحة وسهولة في مكانك الخاص.' },
+  { q: 'ما نوع المكياج الذي تقدمينه؟', a: 'مكياج العرائس، الإنتاج، التصوير، الموديلنج والمناسبات. من التحضير ليومك الكبير إلى الجاهزية أمام الكاميرا، نصمم الإطلالة حسب المناسبة والشكل الذي ترغبين به.' },
+  { q: 'هل تقدمين تجربة مكياج مسبقة؟', a: 'نعم! التجربة متاحة لحجوزات العرائس والإنتاج والتصوير فقط. تتيح لنا اختبار وتحسين الإطلالة قبل الموعد الفعلي. وفي حال تأكيد الحجز بعد التجربة، يُخصم مبلغ 150 ريال من رسوم التجربة من قيمة الحجز.' },
+  { q: 'هل يمكنني حجز مكياج لمجموعة العروس؟', a: 'بالتأكيد. مرحباً بمجموعة العروس والعائلة والإشبينات. تُخطط الحجوزات الجماعية حسب عدد المجموعة والخدمات والموقع والتوقيت.' },
+  { q: 'هل تقبلين حجوزات خارج جدة والمملكة؟', a: 'حسب عدد الأشخاص ونوع المناسبة وعدد الأيام والموقع، يمكنني قبول حجوزات في مدن أخرى داخل السعودية ودولياً. أرسلي التفاصيل وسأخبرك بما هو ممكن.' },
+],
+faqCta: 'لا تزال لديك أسئلة؟ إذا لم يكن سؤالك مدرجاً هنا، أرسلي رسالة وسأجيبك مباشرة.',
+faqCtaBtn: 'اسألي عبر واتساب',
   },
 }
 
@@ -203,6 +236,7 @@ export default function App() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [notes, setNotes] = useState('')
+  const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const t = copy[lang]
   const isAr = lang === 'ar'
@@ -390,6 +424,9 @@ export default function App() {
           </div>
         </section>
 
+
+        
+
         {/* Booking */}
         <section id="booking" className="booking section-pad">
           <div className="booking-intro">
@@ -498,6 +535,53 @@ export default function App() {
           </div>
         </section>
 
+
+{/* FAQ */}
+<section id="faq" className="faq section-pad">
+  <div className="section-heading">
+    <div>
+      <span className="kicker">05 — {t.faqKicker}</span>
+      <h2>{t.faqTitle}</h2>
+      <p>{t.faqBody}</p>
+    </div>
+  </div>
+
+  <div className="faq-list">
+    {t.faqs.map((item, i) => (
+      <div className={openFaq === i ? 'faq-item open' : 'faq-item'} key={i}>
+        <button
+          className="faq-question"
+          onClick={() => setOpenFaq(openFaq === i ? null : i)}
+          aria-expanded={openFaq === i}
+        >
+          <span className="faq-mark">Q</span>
+          <span className="faq-q-text">{item.q}</span>
+          <ChevronDown className="faq-chevron" size={18} />
+        </button>
+        <div className="faq-answer-wrap">
+          <div className="faq-answer">
+            <span className="faq-mark faq-mark-a">A</span>
+            <p>{item.a}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="faq-cta">
+    <p>{t.faqCta}</p>
+    <button
+      className="pill small"
+      onClick={() => window.open(
+        WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}` : 'https://wa.me/',
+        '_blank', 'noopener,noreferrer'
+      )}
+    >
+      <MessageCircle size={16} />
+      {t.faqCtaBtn}
+    </button>
+  </div>
+</section>
         {/* Socials */}
         <section id="socials" className="social-section section-pad">
           <div className="social-copy">
