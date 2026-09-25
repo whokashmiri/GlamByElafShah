@@ -1096,7 +1096,7 @@ footer button {
    FAQ
    ═══════════════════════════════════════════════════════════════════════════ */
 .faq {
-  background: #fff;
+  background: var(--ivory2);
 }
 
 .faq-list {

@@ -84,7 +84,7 @@ faqCtaBtn: string
 // ─── Content ─────────────────────────────────────────────────────────────────
 const copy: Record<Lang, Copy> = {
   en: {
-    nav: ['Services', 'Portfolio', 'About', 'Booking'],
+    nav: ['Services', 'Portfolio', 'About', 'Booking' ,'Faq'],
     book: 'Book your glam',
     eyebrow: 'Makeup artistry • Jeddah',
     title: 'Soft glam, made unforgettable.',
@@ -139,7 +139,7 @@ faqCta: "Still have questions? If your question isn't listed here, send a DM and
 faqCtaBtn: 'Ask on WhatsApp',
   },
   ar: {
-    nav: ['الخدمات', 'الأعمال', 'عن الفنانة', 'الحجز'],
+    nav: ['الخدمات', 'الأعمال', 'عن الفنانة', 'الحجز' ,'Faq'],
     book: 'احجزي موعدك',
     eyebrow: 'فن المكياج • الرياض',
     title: 'إطلالة ناعمة، بحضور لا ينسى.',
@@ -299,7 +299,7 @@ export default function App() {
 
         <nav className="desktop-nav">
           {t.nav.map((label, i) => (
-            <button key={label} onClick={() => scrollTo(['services', 'portfolio', 'about', 'booking'][i])}>
+            <button key={label} onClick={() => scrollTo(['services', 'portfolio', 'about', 'booking' ,'faq'][i])}>
               {label}
             </button>
           ))}
@@ -320,7 +320,7 @@ export default function App() {
         {menu && (
           <div className="mobile-menu">
             {t.nav.map((label, i) => (
-              <button key={label} onClick={() => scrollTo(['services', 'portfolio', 'about', 'booking'][i])}>
+              <button key={label} onClick={() => scrollTo(['services', 'portfolio', 'about', 'booking' , 'faq'][i])}>
                 {label}
               </button>
             ))}
